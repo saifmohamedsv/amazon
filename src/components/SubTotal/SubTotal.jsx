@@ -6,11 +6,7 @@ import {useStateValue} from "../../context/CartContext";
 const SubTotal = () => {
     const [{basket}, dispatch] = useStateValue()
 
-    const getSubTotal = (basket) => {
-        let subtotal = 0;
-        basket.map(item => subtotal += item.price)
-        return subtotal
-    }
+    const getSubTotal = (basket) => basket?.reduce((amount, item) => item.price + amount, 0)
 
     return (
         <div className={"subtotal"}>
