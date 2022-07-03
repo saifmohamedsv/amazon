@@ -11,7 +11,7 @@ const CheckoutProduct = ({img, title, price, rating}) => {
             payload: title
         })
     }
-
+    console.warn('123')
     return (
         <div className={'checkoutProduct'}>
             <img className={"checkoutProduct__image"} src={img} alt=""/>
