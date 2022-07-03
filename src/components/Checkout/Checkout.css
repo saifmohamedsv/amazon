@@ -4,9 +4,16 @@
     background-color: white;
     height: max-content;
 }
+
 .checkout__left {
     margin-right: 10px;
 }
+
+.checkout__right {
+    position: relative;
+    flex: 1;
+}
+
 .checkout__ad {
     width: 100%;
     margin-bottom: 10px;
