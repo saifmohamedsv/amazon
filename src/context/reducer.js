@@ -16,6 +16,8 @@ export const reducer = (state, action) => {
                 console.warn(` can't remove product ${action.payload} `)
             }
             return {...state, basket: newBasket}
+        case "SET_USER":
+            return {...state, user: action.payload}
         default:
             return state
     }
