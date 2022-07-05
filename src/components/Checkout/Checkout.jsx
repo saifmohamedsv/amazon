@@ -5,7 +5,6 @@ import {useStateValue} from "../../context/CartContext";
 import CheckoutProduct from "../CheckoutProduct/CheckoutProduct";
 
 const Checkout = () => {
-
     const [{basket, user}, dispatch] = useStateValue()
 
     return (

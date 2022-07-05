@@ -2,9 +2,11 @@ import React from 'react';
 import CurrencyFormat from 'react-currency-format'
 import './SubTotal.css'
 import {useStateValue} from "../../context/CartContext";
+import {useNavigate} from "react-router-dom";
 
 const SubTotal = () => {
     const [{basket}, dispatch] = useStateValue()
+    const router = useNavigate()
 
     const getSubTotal = (basket) => basket?.reduce((amount, item) => item.price + amount, 0)
 
@@ -29,7 +31,7 @@ const SubTotal = () => {
                 thousandSeparator
                 prefix={"EGP"}
             />
-            <button>Proceed to checkout</button>
+            <button onClick={() => router('/payment')}>Proceed to checkout</button>
         </div>
     );
 };

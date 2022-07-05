@@ -25,7 +25,7 @@ const Login = () => {
         e.preventDefault()
 
         createUserWithEmailAndPassword(auth, email, password).then(auth => {
-            console.log(auth)
+            alert('Account created successfully.')
         })
             .catch(err => {
                 alert(err.message)
