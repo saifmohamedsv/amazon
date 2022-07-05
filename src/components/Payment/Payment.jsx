@@ -39,7 +39,7 @@ const Payment = () => {
             })
             alert('Your Order has been made successfully')
             history('/')
-            
+
         })
     }
 
