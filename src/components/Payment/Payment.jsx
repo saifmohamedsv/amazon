@@ -14,7 +14,7 @@ const Payment = () => {
     const [processing, setProcessing] = useState('')
     const [disabled, setDisabled] = useState(true)
     const [succeeded, setSucceeded] = useState(false)
-    const [clientSecret, setClientSecret] = useState('')
+    const [clientSecret, setClientSecret] = useState(null)
 
     const stripe = useStripe()
     const elements = useElements()
@@ -24,14 +24,22 @@ const Payment = () => {
         setProcessing(true)
 
         const payload = await stripe.confirmCardPayment(clientSecret, {
+
             payment_method: {
                 card: elements.getElement(CardElement)
             }
+
         }).then(({paymentIntent}) => {
+
             setSucceeded(true)
             setError(null)
             setProcessing(false)
-            history('/orders')
+            dispatch({
+                type: "EMPTY_BASKET"
+            })
+            alert('Your Order has been made successfully')
+            history('/')
+            
         })
     }
 
@@ -48,8 +56,7 @@ const Payment = () => {
         // generate special stripe client secret
         const getClientSecret = async () => {
             const res = await axios({
-                method: "post",
-                url: `/payments/create?total=${getSubTotal(basket) * 100}`
+                method: "post", url: `/payment/create?total=${getSubTotal(basket) * 100}`
             })
             setClientSecret(res.data.clientSecret)
         }
@@ -57,6 +64,7 @@ const Payment = () => {
         getClientSecret()
 
     }, [basket])
+
 
     return (<div className={"payment"}>
         <div className={"payment__container"}>
